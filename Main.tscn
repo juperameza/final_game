@@ -494,9 +494,9 @@ show_collision = true
 format = 1
 tile_data = PoolIntArray( -524278, 0, 0, -393206, 1, 0, -262134, 2, 0 )
 
+[node name="Mirror" parent="." instance=ExtResource( 6 )]
+position = Vector2( 139, -110 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
-
-[node name="Mirror" parent="." instance=ExtResource( 6 )]
-position = Vector2( 139, -110 )

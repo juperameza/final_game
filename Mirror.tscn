@@ -5,7 +5,7 @@
 [ext_resource path="res://Dialogue.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.5, 17 )
+extents = Vector2( 14.5, 10 )
 
 [node name="Mirror" type="StaticBody2D"]
 collision_layer = 3
@@ -18,7 +18,7 @@ region_enabled = true
 region_rect = Rect2( 60, 32, 36, 48 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.5, -3 )
+position = Vector2( 2.5, -10 )
 shape = SubResource( 1 )
 
 [node name="Dialogue" parent="." instance=ExtResource( 3 )]
