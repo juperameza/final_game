@@ -1,6 +1,6 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFontData" id=12]
 antialiased = false
 font_path = "res://Assets/AncientModernTales-a7Po.ttf"
 
@@ -9,4 +9,4 @@ size = 12
 outline_color = Color( 1, 0, 0, 1 )
 extra_spacing_char = 2
 extra_spacing_space = 2
-font_data = SubResource( 6 )
+font_data = SubResource( 12 )
