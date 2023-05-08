@@ -33,6 +33,7 @@ func next_script():
 	if current_dialogue >= len(dialogue):
 		$Timer.start()
 		$NinePatchRect.visible = false
+		get_tree().change_scene("res://Figth.tscn")
 		return
 	$NinePatchRect/Name.text=dialogue[current_dialogue]["name"]
 	$NinePatchRect/Chat.text=dialogue[current_dialogue]["text"]	
