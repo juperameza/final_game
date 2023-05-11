@@ -1,6 +1,31 @@
-[
-  { "name": "????", "text": "Quien es ese hombre?..." },
-  { "name": "???", "text": "Soy yo?......" },
-  { "name": "Tu", "text": "QUE ESTA PASANDOOO???!!!" },
-  { "name": "Tu", "text": "AHHHHHHHHH!!!!." }
-]
+{
+  "pelea": [
+    { "name": "????", "text": "Quien es ese hombre?..." },
+    { "name": "???", "text": "Soy yo?......" },
+    { "name": "Tu", "text": "QUE ESTA PASANDOOO???!!!" },
+    { "name": "Tu", "text": "AHHHHHHHHH!!!!." }
+  ],
+  "tutorial": [
+    { "name": "Azael?", "text": "Hola, me recuerdas. Soy Azael" },
+    {
+      "name": "Azael?",
+      "text": "Tranquilo, respira profundamente, no te asustes, no te va a pasar nada"
+    },
+    {
+      "name": "Azael?",
+      "text": "Quería explicarte que soy una persona dentro del espectro autista y a veces puedo tener ciertas dificultades para comunicarme o relacionarme con los demás."
+    },
+    {
+      "name": "Azael?",
+      "text": "Recientemente, acabas de sufrir un ataque de pánico, lo que significa que experimentaste una intensa sensación de miedo y ansiedad que te resultó difícil de controlar."
+    },
+    {
+      "name": "Azael?",
+      "text": "Por favor, ten paciencia conmigo mientras me recupero y si tienes alguna pregunta, no dudes en preguntarme."
+    },
+    {
+      "name": "Azael?",
+      "text": "Ahora, si me disculpas, tengo que irme. Nos vemos pronto en la siguiente actualizacion ."
+    }
+  ]
+}

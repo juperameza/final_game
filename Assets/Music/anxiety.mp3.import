@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/anxiety.mp3-117a120d2dfb21d6a409a92f0dfed245.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/anxiety.mp3"
+dest_files=[ "res://.import/anxiety.mp3-117a120d2dfb21d6a409a92f0dfed245.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

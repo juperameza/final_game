@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/bg.jpg" type="Texture" id=1]
+[ext_resource path="res://Tutorial.gd" type="Script" id=2]
+[ext_resource path="res://Dialogue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Music/heavy-breathing.mp3" type="AudioStream" id=4]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 910.0
+margin_bottom = 608.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="Dialogue" parent="." instance=ExtResource( 3 )]
+
+[node name="heavy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="deep" type="AudioStreamPlayer" parent="."]

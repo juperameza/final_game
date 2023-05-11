@@ -4,6 +4,8 @@ var speed = 100
 var animation = ""
 onready var animations = $AnimatedSprite
 onready var sigth = $RayCast2D
+func _ready():
+	$ambient.play()
 
 func _physics_process(delta):
 	var movement = Vector2()
