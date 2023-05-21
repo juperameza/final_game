@@ -8,9 +8,16 @@ signal textbox_closed
 var current_player_health
 var current_enemy_health
 var is_defending = false
+onready var selector_attack = $ActionsPanel/Actions/Attack/Selector_attack
+onready var selector_defend = $ActionsPanel/Actions/Defend/Selector_defend
+onready var selector_run = $ActionsPanel/Actions/Run/Selector_run
+onready var selector_hook = $AttackPanel/Actions/Hook/Selector_hook
+onready var selector_upper = $AttackPanel/Actions/Upper/Selector_upper
+onready var selector_cross = $AttackPanel/Actions/Cross/Selector_cross
+var current_selection = 0 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	set_current_selection(0)
 	$anxiety.play()
 	$AnimationPlayer.play("EnemyMove")
 	set_health($PlayerPanel/PlayerData/ProgressBar, State.current_health, State.max_health)
@@ -33,10 +40,20 @@ func  set_health(progress_bar, health, max_health):
 	progress_bar.get_node("Label").text = "HP:%d/%d" % [health,max_health]
 
 func _input(event):
-	if Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(BUTTON_LEFT) and $TextBox.visible:
+	if (Input.is_action_just_released("ui_accept") or Input.is_mouse_button_pressed(BUTTON_LEFT)) and $TextBox.visible==true:	
 		$TextBox.hide()
 		emit_signal("textbox_closed")
-		
+	elif Input.is_action_just_released("ui_accept") and $TextBox.visible == false:
+		current_selection = 0 
+		handle_selection(current_selection)
+		set_current_selection(current_selection)
+	if Input.is_action_just_pressed("ui_right") and current_selection < 2: 
+		current_selection += 1
+		set_current_selection(current_selection)
+	if Input.is_action_just_pressed("ui_left") and current_selection > 0: 
+		current_selection -= 1
+		set_current_selection(current_selection)	
+	
 func display_text(text):
 	$ActionsPanel.hide()
 	$AttackPanel.hide()
@@ -144,3 +161,36 @@ func _on_Cross_pressed():
 	
 	$AnimationPlayer.play("EnemyMove")
 	enemy_turn()
+
+func set_current_selection(_current_selection):
+	selector_attack.visible = false
+	selector_defend.visible = false
+	selector_run.visible = false
+	selector_hook.visible = false
+	selector_upper.visible = false 
+	selector_cross.visible = false
+	if _current_selection == 0 : 
+		selector_attack.visible = true
+		selector_hook.visible = true
+	elif _current_selection == 1 :
+		selector_defend.visible = true 
+		selector_upper.visible = true
+	elif _current_selection == 2 :
+		selector_run.visible = true 
+		selector_cross.visible = true
+
+func handle_selection(_current_selector):
+	if $ActionsPanel.visible:
+		if _current_selector == 0 : 
+			_on_Attack_pressed()
+		elif _current_selector == 1 :
+			_on_Defend_pressed()
+		elif _current_selector == 2 :
+			_on_Run_pressed()
+	else : 
+		if _current_selector == 0 : 
+			_on_Hook_pressed()
+		elif _current_selector == 1 :
+			_on_Upper_pressed()
+		elif _current_selector == 2 :
+			_on_Cross_pressed()

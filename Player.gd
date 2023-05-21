@@ -48,3 +48,4 @@ func _physics_process(delta):
 	move_and_slide(movement)
 	animations.play(animation) 
 	animations.flip_h = flip
+	
