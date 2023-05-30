@@ -4,6 +4,7 @@ var dialogue = []
 var current_dialogue = 0
 var d_active = false
 var d_name = ""
+
 func _ready():
 	$NinePatchRect.visible = false
 	
@@ -29,6 +30,8 @@ func _input(event):
 		return
 		
 	if event.is_action_pressed("ui_select"):
+		if get_parent().name == "Tutorial":
+			get_parent().get_child(4).visible = false
 		next_script()
 
 func next_script():
@@ -37,10 +40,15 @@ func next_script():
 		$Timer.start()
 		$NinePatchRect.visible = false
 		if(d_name == "pelea"):
+			
 			get_tree().change_scene("res://Figth.tscn")
 		elif(d_name=="tutorial"):
-			yield(get_tree().create_timer(0.25), "timeout")
-			get_tree().quit()
+			yield(get_tree().create_timer(0.50), "timeout")
+			Resources.flag_figth = true
+			get_tree().change_scene("res://Main.tscn")
+		elif (d_name == "clock"):
+			get_tree().change_scene("res://Figth.tscn")
+			
 		return
 	$NinePatchRect/Name.text=dialogue[current_dialogue]["name"]
 	$NinePatchRect/Chat.text=dialogue[current_dialogue]["text"]	
@@ -48,7 +56,7 @@ func next_script():
 		$deep.play()
 	else:
 		$deep.stop()
-
-
+	if dialogue[current_dialogue]["text"] == "Este estres y miedo se veran representados por esta barra de estado":
+		get_parent().get_child(4).visible = true
 func _on_Timer_timeout():
 	d_active = false

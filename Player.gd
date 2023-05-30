@@ -4,9 +4,15 @@ var speed = 100
 var animation = ""
 onready var animations = $AnimatedSprite
 onready var sigth = $RayCast2D
+var flag = Resources.flag_figth
+var stress = Resources.stress
 func _ready():
 	$ambient.play()
-
+	if get_parent().name == "SecondPart" : 
+		$Camera2D.limit_left = -200	
+		$Camera2D.limit_bottom = 132
+	$ProgressBar.visible = flag
+	$ProgressBar.value = stress
 func _physics_process(delta):
 	var movement = Vector2()
 	var flip = true

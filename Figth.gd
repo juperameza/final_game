@@ -15,8 +15,19 @@ onready var selector_hook = $AttackPanel/Actions/Hook/Selector_hook
 onready var selector_upper = $AttackPanel/Actions/Upper/Selector_upper
 onready var selector_cross = $AttackPanel/Actions/Cross/Selector_cross
 var current_selection = 0 
+var flag = Resources.flag_figth
+var stress = Resources.stress
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if flag :
+		enemy = load("res://clock.tres")
+		State.current_health = 100
+		State.max_health = 100
+		State.damage = 10
+		$ActionsPanel/Actions/Run.text = "Calm"
+	$Label2.visible = flag
+	$ProgressBar2.visible = flag
+	$ProgressBar2.value = stress
 	set_current_selection(0)
 	$anxiety.play()
 	$AnimationPlayer.play("EnemyMove")
@@ -44,8 +55,8 @@ func _input(event):
 		$TextBox.hide()
 		emit_signal("textbox_closed")
 	elif Input.is_action_just_released("ui_accept") and $TextBox.visible == false:
-		current_selection = 0 
 		handle_selection(current_selection)
+		current_selection = 0 
 		set_current_selection(current_selection)
 	if Input.is_action_just_pressed("ui_right") and current_selection < 2: 
 		current_selection += 1
@@ -62,32 +73,51 @@ func display_text(text):
 	
 
 func enemy_turn():
-	display_text("%s attacks you with his mind" % enemy.name)
-	yield(self, "textbox_closed")
-	
-	if is_defending:
-		is_defending = false
-		display_text("You defended succesfully")
+	if stress == 0 && flag:
+		display_text("Te calmaste lo suficiente para darte cuenta que no era real")
 		yield(self, "textbox_closed")
-	else:
-		current_player_health = max(0, current_player_health - enemy.damage)
-		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
+		yield(get_tree().create_timer(0.25), "timeout")
+		get_tree().change_scene("res://SecondPart.tscn")
+	if current_enemy_health == 0:
+		Resources.stress -= 10 
+		display_text("Venciste al reloj")
+		yield(self, "textbox_closed")
+		yield(get_tree().create_timer(0.25), "timeout")
+		get_tree().change_scene("res://SecondPart.tscn")
+	else:  
+		display_text("%s attacks you with his mind" % enemy.name)
+		yield(self, "textbox_closed")
 		
-		$AnimationPlayer.play("enemy_damaged")
-		$AnimationPlayer.play("EnemyMove")
-		display_text("%s dealt %d damage" % [enemy.name, enemy.damage])
-		yield(self, "textbox_closed")
-		if current_player_health == 0:
-			display_text("YOU DIED?????")
+		if is_defending:
+			is_defending = false
+			display_text("You defended succesfully")
 			yield(self, "textbox_closed")
-			yield(get_tree().create_timer(0.25), "timeout")
-			get_tree().change_scene("res://Tutorial.tscn")
-	$ActionsPanel.show()
+		else:
+			current_player_health = max(0, current_player_health - enemy.damage)
+			set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
+			
+			$AnimationPlayer.play("enemy_damaged")
+			$AnimationPlayer.play("EnemyMove")
+			display_text("%s dealt %d damage" % [enemy.name, enemy.damage])
+			yield(self, "textbox_closed")
+			if current_player_health == 0:
+				display_text("YOU DIED?????")
+				yield(self, "textbox_closed")
+				yield(get_tree().create_timer(0.25), "timeout")
+				get_tree().change_scene("res://Tutorial.tscn")
+		$ActionsPanel.show()
 
 
 func _on_Run_pressed():
-	display_text("YOU CAN'T RUN")
-	yield(self, "textbox_closed")
+	if flag :
+		display_text("You calm yourself down a little")
+		stress -= 10
+		Resources.stress = stress
+		$ProgressBar2.value = stress
+		yield(self, "textbox_closed")
+	else:
+		display_text("YOU CAN'T RUN")
+		yield(self, "textbox_closed")
 	enemy_turn()
 	#yield(get_tree().create_timer(0.25), "timeout")
 	#get_tree().quit()
@@ -113,7 +143,7 @@ func _on_Hook_pressed():
 	display_text("You try to hit it with a hook")
 	yield(self, "textbox_closed")
 	
-	current_enemy_health = max(0, current_enemy_health - State.damage)
+	current_enemy_health = max(0, current_enemy_health - State.damage*1.25)
 	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
 	
 	$AnimationPlayer.play("enemy_damaged")
@@ -131,7 +161,7 @@ func _on_Upper_pressed():
 	display_text("You try to hit it with an upper cut")
 	yield(self, "textbox_closed")
 	
-	current_enemy_health = max(0, current_enemy_health - State.damage)
+	current_enemy_health = max(0, current_enemy_health - State.damage*1.50)
 	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
 	
 	$AnimationPlayer.play("enemy_damaged")

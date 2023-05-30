@@ -8,24 +8,15 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node2D",
-"class": "TurnQueue",
-"language": "GDScript",
-"path": "res://TurnQueue.gd"
-} ]
-_global_script_class_icons={
-"TurnQueue": ""
-}
-
 [application]
 
 config/name="FInal"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
+Resources="*res://Resources.gd"
 State="*res://State.gd"
 
 [display]

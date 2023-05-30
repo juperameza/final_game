@@ -13,6 +13,14 @@
     },
     {
       "name": "Azael?",
+      "text": "Soy el niño de tu escuela que molestabas por ser raro, pero no te preocupes, no te guardo rencor"
+    },
+    {
+      "name": "Azael?",
+      "text": "Parece que por alguna razon quedaste atrapado en mi cuerpo"
+    },
+    {
+      "name": "Azael?",
       "text": "Quería explicarte que soy una persona dentro del espectro autista y a veces puedo tener ciertas dificultades para comunicarme o relacionarme con los demás."
     },
     {
@@ -21,11 +29,57 @@
     },
     {
       "name": "Azael?",
+      "text": "Este estres y miedo se veran representados por esta barra de estado"
+    },
+    {
+      "name": "Azael?",
+      "text": "Asegurate que no llegue a niveles altos o volvera a pasar."
+    },
+    {
+      "name": "Azael?",
+      "text": "Cuando tu estres llegue a subir puedes hacer acciones que te calmen como leer un libro o tomar una siesta."
+    },
+    {
+      "name": "Azael?",
+      "text": "De ahora en adelante cuando estes en una 'pelea' podras calmarte y si llegas a bajar."
+    },
+    {
+      "name": "Azael?",
       "text": "Por favor, ten paciencia conmigo mientras me recupero y si tienes alguna pregunta, no dudes en preguntarme."
     },
     {
       "name": "Azael?",
       "text": "Ahora, si me disculpas, tengo que irme. Nos vemos pronto en la siguiente actualizacion ."
+    }
+  ],
+  "ansiedad_pelea": [
+    {
+      "name": "Tu?",
+      "text": "Recuerdas el sentimiento y te sientes un poco abrumado"
+    }
+  ],
+  "calm_book": [
+    {
+      "name": "Tu?",
+      "text": "Lees y te calmas un poco"
+    }
+  ],
+  "clock": [
+    {
+      "name": "Tu?",
+      "text": "El reloj marca las 12:00 an"
+    },
+    {
+      "name": "Tu?",
+      "text": "Al tocar el reloj haz hecho que sonara"
+    },
+    {
+      "name": "Tu?",
+      "text": "El sonido te hace sentir navajazos en el cerebro "
+    },
+    {
+      "name": "Tu?",
+      "text": "Te sientes un poco abrumado"
     }
   ]
 }
